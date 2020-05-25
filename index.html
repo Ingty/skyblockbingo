@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Hypixel Skyblock Bingo</title>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
+    <link rel="stylesheet" href="css.css">
+    <script src="array.js"></script>
+    <script type="text/javascript">
+      function genTable(){
+        var tdcount=1;
+        for(var i=0;i<5;i++){
+          var newTr = document.createElement('tr');
+          document.getElementById("t").appendChild(newTr);
+          for(var j=0;j<5;j++){
+            var newTd = document.createElement('td');
+            newTd.setAttribute('id',tdcount);
+            newTd.setAttribute('onClick','tdClick(this.id)');
+            newTr.appendChild(newTd);
+            tdcount++;
+          }
+        }
+        fillTable();
+      }
+      function tdClick(thisid){
+        var thistd = document.getElementById(thisid);
+        if(thistd.style.background == "rgb(128, 128, 128)"){
+          thistd.style.background = "rgb(27, 154, 48)";
+        }
+        else{
+          thistd.style.background = "rgb(128, 128, 128)";
+        }
+      }
+      var numberArray = [];
+      function genRandomNumbers(){
+        while(numberArray.length<25){
+          var r = Math.floor(Math.random()*(missionArray.length));
+          if(numberArray.indexOf(r)===-1) numberArray.push(r);
+        }
+      }
+      function fillTable(){
+        genRandomNumbers();
+        for(var k=1;k<=25;k++){
+          document.getElementById(k).innerHTML = missionArray[numberArray[k-1]];
+        }
+        numberArray = [];
+      }
+      function pad(d) {
+          return (d < 10) ? '0' + d.toString() : d.toString();
+      }
+      var myTimer;
+       function clock() {
+         document.getElementById("gen").setAttribute("hidden","hidden");
+         myTimer = setInterval(myClock, 1000);
+         var s = 0;
+         var m = 0;
+         var h = 0;
+         function myClock() {
+           document.getElementById("timer").innerHTML = pad(h) + ":" + pad(m) + ":" + pad(++s);
+           if (s == 59) {
+             if(m == 59) {
+               m = 0;
+               h++;
+             }
+             s = 0;
+             m++;
+           }
+         }
+       }
+    </script>
+  </head>
+  <body onload="genTable();">
+    <div class="content" id="div1">
+      <h1>Hypixel Skyblock Bingo</h1>
+      <span id="timer">00:00:00</span><br><br>
+      <button type="button" onClick="fillTable()" id="gen">Generate</button>
+      <button onclick="clock(); document.getElementById('stop').removeAttribute('hidden'); document.getElementById('start').setAttribute('hidden','hidden');" id="start">Start counter</button>
+      <button onclick="clearInterval(myTimer); document.getElementById('start').removeAttribute('hidden'); document.getElementById('stop').setAttribute('hidden','hidden');" id="stop" hidden="hidden">Stop counter</button><br><br>
+      <table id="t"></table>
+      <p>How to play:<br>
+      - Choose one of the ways to play:<br>
+      = Blackout: you have to finish all 25 missions<br>
+      = Classic Bingo: Finish 5 missions in any row (vertical, horizontal or diagonal)<br>
+      - Generate table<br>
+      - Create new profile<br>
+      - Start timer</p>
+      <p>Rules:<br>
+      - Do not ask guild or any discord server to craft/obtain something for u.<br>
+      - You can ask in lobbies to craft something for u.<br>
+      - You can play co-op but u every player has to obtain certain items/deal x dmg etc.
+
+      </p>
+    </div>
+  </body>
+</html>
