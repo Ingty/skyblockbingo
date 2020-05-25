@@ -2,7 +2,7 @@ table{
   border: 4px white solid;
 }
 td{
-  background: gray;
+  background: rgb(128, 128, 128);
   border: 3px black solid;
   outline: 2px white solid;
   width: 160px;
