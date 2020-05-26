@@ -10,10 +10,6 @@ td{
   text-align: center;
   color: black;
 }
-@font-face {
- font-family: MinecrafterAlt;
- src:url("Minecrafter.alt.ttf");
-}
 button{
   border: 3px black solid;
   outline: 2px white solid;
@@ -52,7 +48,7 @@ body{
 }
 #timer{
   font-size: 40px;
-  font-family: 'MinecrafterAlt';
+  font-family: 'MinecraftiaRegular';
 }
 img{
   margin: 0px;
