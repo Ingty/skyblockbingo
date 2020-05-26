@@ -38,7 +38,7 @@ var missionArray = [
   "Open Red Gift with random non",
   "Remind Melancholic Viking of the sea",
   "Spend 20k coins on rain",
-  "<b>Craft</b> one enchanted wood of every kind",
+  "<u>Craft</u> one enchanted wood of every kind",
   "Obtain backpack",
   "Obtain Special rarity item"
 ];

@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="css.css">
     <script src="array.js"></script>
     <script type="text/javascript">
+      function randomBg(){
+        var randbg = Math.floor(Math.random()*5)+1;
+        document.body.style.background = "url(\"" + randbg + ".png\")";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundAttachment = "fixed";
+        document.body.style.backgroundSize = "cover";
+      }
       function genTable(){
+        randomBg();
         var tdcount=1;
         for(var i=0;i<5;i++){
           var newTr = document.createElement('tr');
@@ -73,11 +81,11 @@
   </head>
   <body onload="genTable();">
     <div class="content" id="div1">
-      <h1>Hypixel Skyblock Bingo</h1>
+      <img src="bingo.png" alt="HYPIXEL SKYBLOCK BINGO">
       <span id="timer">00:00:00</span><br><br>
       <button type="button" onClick="fillTable()" id="gen">Generate</button>
-      <button onclick="clock(); document.getElementById('stop').removeAttribute('hidden'); document.getElementById('start').setAttribute('hidden','hidden');" id="start">Start counter</button>
-      <button onclick="clearInterval(myTimer); document.getElementById('start').removeAttribute('hidden'); document.getElementById('stop').setAttribute('hidden','hidden');" id="stop" hidden="hidden">Stop counter</button><br><br>
+      <button onclick="clock(); document.getElementById('stop').removeAttribute('hidden'); document.getElementById('start').setAttribute('hidden','hidden');" id="start">Start</button>
+      <button onclick="clearInterval(myTimer); document.getElementById('start').removeAttribute('hidden'); document.getElementById('stop').setAttribute('hidden','hidden');" id="stop" hidden="hidden">Stop</button><br><br>
       <table id="t"></table>
       <p>How to play:<br>
       - Choose one of the ways to play:<br>
