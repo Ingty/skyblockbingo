@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Hypixel Skyblock Bingo</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
     <link rel="stylesheet" href="css.css">
     <script src="array.js"></script>
     <script type="text/javascript">
@@ -30,7 +29,7 @@
             tdcount++;
           }
         }
-        fillTable();
+        fillTableRand();
       }
       function tdClick(thisid){
         var thistd = document.getElementById(thisid);
@@ -42,13 +41,31 @@
         }
       }
       var numberArray = [];
-      function genRandomNumbers(){
-        while(numberArray.length<25){
-          var r = Math.floor(Math.random()*(missionArray.length));
-          if(numberArray.indexOf(r)===-1) numberArray.push(r);
-        }
+      function genSeededNumbers(){
+        var seed = document.getElementById("seed").value;
+        var sliced = seed.split(":");
+        sliced.pop();
+        numberArray = sliced;
       }
-      function fillTable(){
+      function genRandomNumbers(){
+        var temp = "";
+          while(numberArray.length<25){
+            var r = Math.floor(Math.random()*(missionArray.length));
+            if(numberArray.indexOf(r)===-1){
+            numberArray.push(r);
+            temp += r + ":";
+            }
+          }
+          document.getElementById("seed").value = temp;
+      }
+      function fillTableSeeded(){
+        genSeededNumbers();
+        for(var k=1;k<=25;k++){
+          document.getElementById(k).innerHTML = missionArray[numberArray[k-1]];
+        }
+        numberArray = [];
+      }
+      function fillTableRand(){
         genRandomNumbers();
         for(var k=1;k<=25;k++){
           document.getElementById(k).innerHTML = missionArray[numberArray[k-1]];
@@ -60,7 +77,8 @@
       }
       var myTimer;
        function clock() {
-         document.getElementById("gen").setAttribute("hidden","hidden");
+         document.getElementById("gena").setAttribute("hidden","hidden");
+         document.getElementById("genb").setAttribute("hidden","hidden");
          myTimer = setInterval(myClock, 1000);
          var s = 0;
          var m = 0;
@@ -83,7 +101,9 @@
     <div class="content" id="div1">
       <img src="bingo.png" alt="HYPIXEL SKYBLOCK BINGO">
       <span id="timer">00:00:00</span><br><br>
-      <button type="button" onClick="fillTable()" id="gen">Generate</button>
+      <button type="button" onClick="fillTableRand()" id="gena">Generate Random</button><br>
+      <button type="button" onClick="fillTableSeeded()" id="genb">Use seed</button>
+      <p id="seedp">Seed: <input type="text" name="seed" id="seed"></p>
       <button onclick="clock(); document.getElementById('stop').removeAttribute('hidden'); document.getElementById('start').setAttribute('hidden','hidden');" id="start">Start</button>
       <button onclick="clearInterval(myTimer); document.getElementById('start').removeAttribute('hidden'); document.getElementById('stop').setAttribute('hidden','hidden');" id="stop" hidden="hidden">Stop</button><br><br>
       <table id="t"></table>
@@ -100,8 +120,10 @@
       - You can ask in lobbies to craft something for u.<br>
       - You can play co-op but every player has to obtain certain items/deal x dmg etc. (no armor and talisman sharing!)
       </p>
-      <p>Full list of challenges:<br>
-        <a href="https://raw.githubusercontent.com/Ingty/skyblockbingo/master/array.js">Challenge list</a></p>
+      <p><a href="https://raw.githubusercontent.com/Ingty/skyblockbingo/master/array.js">Full list of challenges</a></p>
+        <p>TODO list:<br>
+        - Simplify seed system<br>
+        - Add more challenges</p>
     </div>
   </body>
 </html>

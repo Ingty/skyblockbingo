@@ -1,3 +1,7 @@
+@font-face {
+    font-family: MinecraftiaRegular;
+    src:url("Minecraftia-Regular.ttf");
+}
 table{
   border: 4px white solid;
 }
@@ -31,6 +35,7 @@ body{
   background: black;
   color: white;
   font-family: 'MinecraftiaRegular';
+  line-height: 1.2;
   font-weight: normal;
   font-style: normal;
   font-size: 20px;
@@ -49,6 +54,17 @@ body{
 #timer{
   font-size: 40px;
   font-family: 'MinecraftiaRegular';
+}
+#seed{
+  border: 2px solid #000;
+  font-family: MinecraftiaRegular;
+  font-size: 10px;
+  height: 50px;
+  width: 400px;
+}
+#seedp{
+  margin: auto;
+  padding: 10px;
 }
 img{
   margin: 0px;
